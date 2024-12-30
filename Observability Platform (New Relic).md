@@ -1,5 +1,17 @@
 # New Relic
 
+#### Monitoring
+
+Collecting and visualizing data about systems regularly so the system's health can be viewed and tracked
+
+Three questions of monitoring
+1. Is the service on? returns 200
+2. Is the service functioning as expected? number of errors
+3. Is the service performing well? latency and throughput
+
+DevOps Measure of Success
+MTTD (Mean Time to Detect) and MTTR (Mean Time to Resolve)
+
 #### How does an observability platform collect?
 
 Through a process called instrumentation.
