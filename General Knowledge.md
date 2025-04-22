@@ -126,4 +126,66 @@ The last layer is physical layer till now data from application layer has been s
 Summary for https://youtu.be/vv4y_uOneC0 by https://eightify.app)
 
 
-#### 
+#### CSRF
+
+CSRF Protection Doesn't Block Requests from OTHER SITES, But Ensures They Fail
+Other sites can still send requests to your site.
+However, CSRF protection ensures that unauthorized requests fail by requiring additional security checks.
+🔹 How CSRF Protection Ensures Failure?
+1️⃣ CSRF Tokens – The server expects a valid token that the attacker cannot generate.
+2️⃣ SameSite Cookies – Prevents cookies from being sent in cross-site requests.
+3️⃣ Origin/Referer Checks – Ensures the request is coming from the correct site.
+
+#### CORS
+
+CORS prevents JavaScript from reading another site's responses, unless explicitly allowed. ✅
+
+The server will still process the request, even if it's from another site.
+The browser enforces the restriction, preventing JavaScript from reading the response unless CORS headers allow it.
+
+🔹 What CORS Actually Does
+CORS (Cross-Origin Resource Sharing) is a browser security feature that controls which origins (websites) can access resources (responses) from another site.
+It does not block requests from being sent but prevents JavaScript from reading responses if the request is not allowed by the server.
+
+#### Timezones
+
+The best advice I've heard (and I share) about TZs is this:
+
+Do all your business logic in UTC timestamps only, using your language's best library for time logic.
+
+Under no circumstances do you *ever* try to do time-based math/logic yourself. No, not even if it's "simple".
+
+In Java 8+ that's "java.time", not "Dates" and "Calendars".
+
+Whenever possible, store all your timestamps in the datastore in ISO-8601 formatted strings, in UTC. They're still sortable, searchable, but also human readable.
+
+Transmit your timestamps across wires as ISO-8601 formatted strings, in UTC.
+
+The only place that may know anything about time zones is the front-end, who convert it for the current user in the appropriate way for them, using a library that does it correctly.
+
+There are edge cases, of course ("I need this to run at midnight local time in New York every Sunday"), but for 95% of cases the above system handles most bugs pretty nicely.
+
+#### Database design
+
+##### Normalization
+1NF: A cell must not contain more than one value and each data (row and column) must be unique.
+2NF: All data (columns) must depend on the whole primary key (not on the part of the composite key). (Look at the DATA (non-primary key)!)
+    No partial dependencies.
+    All non-key attributes depend on the whole primary key (or are in their own table).
+3NF: The primary key must fully define all non-key columns. (Look at the PRIMARY key!)
+    Transitive dependencies are removed — attributes that depend on something that's not a key.
+
+
+##### Composite Key
+Composite Key = A key made of more than one column to uniquely identify a row.
+・Can employee_id alone uniquely identify each row?
+・No, because one employee (like E001) can have multiple jobs.
+
+・Can job_code alone identify each row?
+・No, because many employees can have the same job (e.g., E001 and E002 both have J02).
+
+So what uniquely identifies a row here・・
+✅ The combination of:
+employee_id + job_code
+Together, these two columns uniquely identify each row.
+That’s a composite key.
