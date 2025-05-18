@@ -189,3 +189,21 @@ So what uniquely identifies a row here・・
 employee_id + job_code
 Together, these two columns uniquely identify each row.
 That’s a composite key.
+
+## Data Structures and Algorithms
+
+##### Heap and Stack Memory
+
+| Aspect           | Stack                                              | Heap                                             |
+|------------------|----------------------------------------------------|--------------------------------------------------|
+| **Who uses it?** | Functions/methods (for local vars, calls)          | You (developer/program), Java (GC)               |
+| **What is it?**  | Memory for function calls & local vars             | Memory for dynamic object storage                |
+| **When used?**   | When a function is called                          | When you use `new` or dynamic structures         |
+| **Where stored?**| RAM (main memory, stack segment)                   | RAM (main memory, heap segment)                  |
+| **Why used?**    | Fast allocation & auto-cleanup                     | For data that needs flexible/larger life         |
+| **How works?**   | LIFO: push/pop frames automatically                | Manual allocation, cleaned by GC (e.g., in Java) |
+
+・Stack is fast, but small and temporary.
+・Heap is slower, but flexible and can store large or complex objects.
+・In Java, the Garbage Collector (GC) frees memory on the heap automatically.
+・Stack memory is automatically freed when functions return.
