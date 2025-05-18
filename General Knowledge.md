@@ -207,3 +207,25 @@ That’s a composite key.
 ・Heap is slower, but flexible and can store large or complex objects.
 ・In Java, the Garbage Collector (GC) frees memory on the heap automatically.
 ・Stack memory is automatically freed when functions return.
+
+##### List, Set and Map
+
+| Feature                                   | List                              | Set                              | Map                                  |
+|-------------------------------------------|----------------------------------|---------------------------------|-------------------------------------|
+| Allows duplicate elements                  | Yes                              | No                              | No (keys must be unique)             |
+| Maintains insertion order                  | Yes                              | No (depends on implementation)  | No (depends on implementation)       |
+| Allows null values                         | Any number                      | At most one null value           | One null key at most, many null values |
+| Access elements by index                   | Yes (`get(index)`)               | No                              | No                                  |
+| Best use case                             | Access by index, ordered data   | Unique elements                  | Key/value pair storage               |
+| Traversal method                          | `ListIterator`                   | `Iterator`                      | `keySet()`, `values()`, `entrySet()`|
+
+When to use Set, List, and Map
+Set:
+Use a Set when you only care about unique elements and don’t care about order or position.
+Example: Checking if an item exists, storing unique IDs, removing duplicates.
+List:
+Use a List when you want to maintain order and allow duplicates, or when you need to access elements by index.
+Example: Maintaining a playlist, ordered tasks, or any collection where position matters.
+Map:
+Use a Map when you want to store key-value pairs for fast lookup by key. Keys are unique, but values can be duplicated.
+Example: Storing user profiles by user ID, caching data, or dictionary-like data.
