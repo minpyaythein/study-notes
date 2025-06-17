@@ -229,3 +229,5 @@ Example: Maintaining a playlist, ordered tasks, or any collection where position
 Map:
 Use a Map when you want to store key-value pairs for fast lookup by key. Keys are unique, but values can be duplicated.
 Example: Storing user profiles by user ID, caching data, or dictionary-like data.
+
+Idempotency: Retrying number of times gives the same result.
