@@ -1,4 +1,4 @@
-# AWS Solution Architect Exam Study Notes
+# AWS
 
 #### Networking Device suitable for HPC?
 
@@ -678,3 +678,13 @@ Port 500: Internet Security Association and Key Management Protocol (ISAKMP), wh
 Port 587: Modern, secure SMTP that uses encryption.
 Port 3389: Remote Desktop Protocol (RDP). RDP enables users to remotely connect to their desktop computers from another device.
 The Internet Assigned Numbers Authority (IANA) maintains the full list of port numbers and protocols assigned to them.
+
+#### Others
+
+Apache Kafka and Amazon SQS are both used for message streaming but are not the same.
+
+Apache Kafka follows the publish subscriber model, where the producer sends an event/message to a topic, and one or more consumers are subscribed to that topic to get the event/message. In the topic, you find partitions for parallel streaming. There is a consumer group concept once. When a message is read from a partition of topics it will be committed to identify it already read by that consumer group to avoid inconsistency in reading in concurrent programming. However, other consumer groups can still read that message from the partition.
+
+Where Amazon SQS follows Queue and the queue can be created in any region of Amazon SQS. You can push messages to Queue and only one consumer can subscribe to each Queue and pull messages from the Queue. That's why SQS is pull-based streaming. SQS Queues are of two types: FIFO and Standard.
+
+There is another concept in AWS which is Amazon SNS, which is published subscriber-based like Kafka, but there is not any message retention policy in SNS. It's for instant messaging like email, SMS, etc. It can only push messages to subscribers when the subscribers are available. Otherwise, the message will be lost. However, SQS with SNS can overcome this drawback. Amazon SNS with SQS is called the fanout pattern. In this pattern, a message published to an SNS topic is distributed to multiple SQS queues in parallel and the SQS queue assures persistence, because SQS has a retention policy. It can persist message for up to 14 days(default 4 days). Amazon SQS with SNS can achieve high throughput parallel streaming and can replace Apache Kafka.
